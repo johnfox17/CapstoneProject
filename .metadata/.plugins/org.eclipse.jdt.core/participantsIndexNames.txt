@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+C:\Users\John Fox\Desktop\Capstone\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\769480574.index
+\MathEvaluator\src
+C:\Users\John Fox\Desktop\Capstone\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1719929986.index
+\MathEvaluator_2.0\src
+C:\Users\John Fox\Desktop\Capstone\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4097605741.index
+\MathEvaluator\src
