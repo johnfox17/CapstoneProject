@@ -22,18 +22,18 @@ public class info extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://mydatabasetest.ciydcc3zf6bp.us-east-1.rds.amazonaws.com","jrfox9","jfoxherr20?!");
+			Connection con = DriverManager.getConnection("jdbc:mysql://mydatabaseinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com","jrfox9","jfoxherr20?!");
 			Statement stmt = con.createStatement();
-			String sql = "select * from DBTest.students_info where ID="+request.getParameter("ID").toString();
+			String sql = "select * from myDatabase.students where id="+request.getParameter("ID").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) 
 			{
-				System.out.println(rs.getInt("ID")+"\t"+rs.getString("Name")+"\t"+rs.getString("CurrentLevel"));
+				System.out.println(rs.getInt("id")+"\t"+rs.getString("name")+"\t"+rs.getString("current_level"));
 				System.out.println("Yes");
 			}
 		}catch(Exception e) {
