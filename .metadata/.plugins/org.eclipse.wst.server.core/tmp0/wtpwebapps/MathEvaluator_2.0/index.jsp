@@ -8,19 +8,18 @@
 </head>
 <body>
 
-	<form method="post" action="info">
+	<form method="get" action="info">
 		<table>
 			<tr>
-				<td>Student ID Number</td>
+				<td>Please input student ID number</td>
 				<td><input type="text" name="ID"></td>
-			</tr>
-			<tr>
-				<td>Name</td>
-				<td><input type="text" name="name"></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><input type="submit" value="login"></td>
+			</tr>
+			<tr>
+				<td><a href="sign_up_page.jsp">If not signed up, please do so.</a></td>
 			</tr>
 		</table>
 	</form>

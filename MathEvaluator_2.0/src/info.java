@@ -28,7 +28,7 @@ public class info extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://mydbinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com","jfox","j1234567?");
 			Statement stmt = con.createStatement();
-			String sql = "select * from myDatabase.students where id="+request.getParameter("ID").toString();
+			String sql = "select * from CapstoneDB.students where id="+request.getParameter("ID").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) 

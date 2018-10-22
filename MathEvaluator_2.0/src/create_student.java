@@ -30,7 +30,7 @@ public class create_student extends HttpServlet {
 					"jdbc:mysql://mydbinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com", "jfox",
 					"j1234567?");
 			Statement stmt = con.createStatement();
-			String sql = "insert into myDatabase.students (`id`, `name`) VALUES " + "(" + "\'"
+			String sql = "insert into CapstoneDB.students (`id`, `name`) VALUES " + "(" + "\'"
 					+ request.getParameter("stateID").toString() + "\'" + "," + "\'"
 					+ request.getParameter("name").toString() + "\'" + ")";
 
