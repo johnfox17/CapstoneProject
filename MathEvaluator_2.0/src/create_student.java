@@ -30,9 +30,10 @@ public class create_student extends HttpServlet {
 					"jdbc:mysql://mydbinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com", "jfox",
 					"j1234567?");
 			Statement stmt = con.createStatement();
-			String sql = "insert into CapstoneDB.students (`id`, `name`) VALUES " + "(" + "\'"
-					+ request.getParameter("stateID").toString() + "\'" + "," + "\'"
-					+ request.getParameter("name").toString() + "\'" + ")";
+			String sql = "insert into CapstoneDB.students (`idstudents`, `name`, `level`) VALUES " + "(" + "\'"
+					+ request.getParameter("ID").toString() + "\'" + "," + "\'"
+					+ request.getParameter("name").toString() + "\'" + ","+"\'"
+					+ '0' + "\'" +")";
 
 			int answer = stmt.executeUpdate(sql);
 			if (answer == 1) {

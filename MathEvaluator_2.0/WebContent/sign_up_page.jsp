@@ -16,12 +16,12 @@
 				<td><input type="text" name="name"></td>
 			</tr>
 			<tr>
-				<td>State ID Number</td>
-				<td><input type="text" name="stateID"></td>
+				<td>ID Number</td>
+				<td><input type="text" name="ID"></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" value="login"></td>
+				<td><input type="submit" value="enter"></td>
 			</tr>
 		</table>
 	</form>
