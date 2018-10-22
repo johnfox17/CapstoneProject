@@ -27,8 +27,8 @@ public class create_student extends HttpServlet {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://mydatabaseinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com", "jrfox9",
-					"jfoxherr20?!");
+					"jdbc:mysql://mydbinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com", "jfox",
+					"j1234567?");
 			Statement stmt = con.createStatement();
 			String sql = "insert into myDatabase.students (`id`, `name`) VALUES " + "(" + "\'"
 					+ request.getParameter("stateID").toString() + "\'" + "," + "\'"
