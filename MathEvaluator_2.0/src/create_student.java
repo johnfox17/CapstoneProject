@@ -25,12 +25,10 @@ public class create_student extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://mydbinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com", "jfox",
-					"j1234567?");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
 			Statement stmt = con.createStatement();
-			String sql = "insert into CapstoneDB.students (`idstudents`, `name`, `level`) VALUES " + "(" + "\'"
+			String sql = "insert into dbDevil.students (`idstudents`, `name`, `level`) VALUES " + "(" + "\'"
 					+ request.getParameter("ID").toString() + "\'" + "," + "\'"
 					+ request.getParameter("name").toString() + "\'" + ","+"\'"
 					+ '0' + "\'" +")";

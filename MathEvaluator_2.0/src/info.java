@@ -1,5 +1,6 @@
 
 import java.sql.*;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -25,16 +26,15 @@ public class info extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://mydbinstance.ciydcc3zf6bp.us-east-1.rds.amazonaws.com","jfox","j1234567?");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
 			Statement stmt = con.createStatement();
-			String sql = "select * from CapstoneDB.students where idstudents="+request.getParameter("ID").toString();
+			String sql = "select * from dbDevil.students where idstudents="+request.getParameter("ID").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) 
 			{
 				System.out.println(rs.getInt("idstudents")+"\t"+rs.getString("name")+"\t"+rs.getString("level"));
-				System.out.println("Yes");
 			}
 		}catch(Exception e) {
 			System.out.print(e);
