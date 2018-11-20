@@ -7,18 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Please input students information. So we can put it in the
-		system.</h1>
-	<form method="post" action="create_student">
+	<h1>You have decided to eliminate a student from our database. Please input the ID of the student that you want to eliminate</h1>
+	<form method="post" action="eliminate_student">
 		<table>
-			<tr>
-				<td>Student Name</td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td>Age</td>
-				<td><input type="text" name="age"></td>
-			</tr>
 			<tr>
 				<td>ID Number</td>
 				<td><input type="text" name="ID"></td>

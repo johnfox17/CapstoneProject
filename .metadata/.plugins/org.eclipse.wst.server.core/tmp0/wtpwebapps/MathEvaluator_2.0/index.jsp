@@ -21,6 +21,9 @@
 			<tr>
 				<td><a href="sign_up_page.jsp">If not signed up, please do so.</a></td>
 			</tr>
+			<tr>
+				<td><a href="eliminate_student.jsp">To eliminate student please click on this link.</a></td>
+			</tr>
 		</table>
 	</form>
 	<p>${error}</p>

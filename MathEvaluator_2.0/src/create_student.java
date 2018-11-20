@@ -23,21 +23,21 @@ public class create_student extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			//Connection to the USA database
+			//Connection con = DriverManager.getConnection("jdbc:mysql://mydb.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
 			Connection con = DriverManager.getConnection("jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
 			Statement stmt = con.createStatement();
-			String sql = "insert into dbDevil.students (`idstudents`, `name`, `level`) VALUES " + "(" + "\'"
+			String sql = "INSERT INTO dbDevil.students (`idstudents`, `name`,`age`, `level`) VALUES " + "(" + "\'"
 					+ request.getParameter("ID").toString() + "\'" + "," + "\'"
 					+ request.getParameter("name").toString() + "\'" + ","+"\'"
+					+ request.getParameter("age").toString() + "\'" + ","+"\'"
 					+ '0' + "\'" +")";
-
 			int answer = stmt.executeUpdate(sql);
 			if (answer == 1) {
 				System.out.println("The student was successfully added to the database system");
 			}
-
 		} catch (Exception e) {
 			System.out.print(e);
 		}

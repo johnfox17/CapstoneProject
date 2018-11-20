@@ -17,4 +17,7 @@
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashSet"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="uk.ac.ed.ph.snuggletex.SnuggleEngine"/>
+<fullyQualifiedTypeName name="uk.ac.ed.ph.snuggletex.SnuggleSession"/>
+<fullyQualifiedTypeName name="uk.ac.ed.ph.snuggletex.SnuggleInput"/>
 </qualifiedTypeNameHistroy>
