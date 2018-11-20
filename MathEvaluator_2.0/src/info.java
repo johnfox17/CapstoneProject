@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -31,16 +32,29 @@ public class info extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//Connection to the USA database
 			//Connection con = DriverManager.getConnection("jdbc:mysql://mydb.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
+			boolean found = false;
+			
 			Connection con = DriverManager.getConnection("jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
 			Statement stmt = con.createStatement();
 			String sql = "select * from dbDevil.students where idstudents="+request.getParameter("ID").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) 
 			{
-				System.out.println(rs.getInt("id")+"\t"+rs.getString("name")+"\t"+rs.getString("age")+rs.getString("level"));
+				if(Integer.toString(rs.getInt("idstudents")).equals(request.getParameter("ID").toString())) {
+					HttpSession session = request.getSession();
+					session.setAttribute("name", rs.getString("name"));
+					session.setAttribute("level", rs.getString("level"));
+					response.sendRedirect("lesson.jsp");
+					found = true;
+				}				
+			}
+			if(!found) {
+				System.out.println("Student was not found!");
+				response.sendRedirect("index.jsp");
 			}
 		}catch(Exception e) {
-			System.out.print(e);
+			System.out.println("hello");
+			System.out.println(e);
 		}
 	}
 
