@@ -44,6 +44,7 @@ public class info extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("name", rs.getString("name"));
 					session.setAttribute("level", rs.getString("level"));
+					session.setAttribute("problem", "Problem goes here");
 					response.sendRedirect("lesson.jsp");
 					found = true;
 				}				
@@ -53,7 +54,6 @@ public class info extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			}
 		}catch(Exception e) {
-			System.out.println("hello");
 			System.out.println(e);
 		}
 	}

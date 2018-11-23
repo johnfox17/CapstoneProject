@@ -6,6 +6,9 @@
 <%
 	String level = (String) session.getAttribute("level");
 %>
+<%
+	String problem = (String) session.getAttribute("problem");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +20,11 @@
 		<table>
 			<tr>
 				<td><b>Hello: </b><%=name%> </td>
+				<td></td>
 				<td><b>You're at level: </b><%=level%></td>
+			</tr>
+			<tr>
+				<td><b>---</b><%=problem%></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="login"></td>
