@@ -35,6 +35,7 @@ public class eliminate_student extends HttpServlet {
 			if (answer == 1) {
 				System.out.println("You were able to successfully eliminate the students!");
 			}
+			response.sendRedirect("eliminate_student.jsp");
 
 		} catch (Exception e) {
 			System.out.print("Student was not located. Try another student ID");

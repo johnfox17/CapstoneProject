@@ -23,7 +23,7 @@ public class sign_out extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		session = request.getSession();
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("logout.jsp");
 	}
 
 }

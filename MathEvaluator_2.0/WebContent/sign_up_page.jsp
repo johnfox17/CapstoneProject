@@ -27,6 +27,9 @@
 				<td></td>
 				<td><input type="submit" value="enter"></td>
 			</tr>
+			<tr>
+				<td><a href="index.jsp">If you are already signed up and want to login, click here</a></td>
+			</tr>
 		</table>
 	</form>
 </body>
