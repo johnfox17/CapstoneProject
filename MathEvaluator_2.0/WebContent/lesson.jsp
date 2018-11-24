@@ -32,6 +32,14 @@
 			
 		</table>
 	</form>
+	<form method="get" action="sign_out">
+		<table>
+			<tr>
+				<td><input type="submit" value="logout"></td>
+			</tr>
+			
+		</table>
+	</form>
 	
 
 </body>

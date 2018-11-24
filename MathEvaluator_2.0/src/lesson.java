@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.concurrent.ThreadLocalRandom;
-
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,38 +21,26 @@ import javax.servlet.http.HttpSession;
 		"/lesson" })
 public class lesson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	int k =0;
+	int k;
 	Integer[] problemNumArray;
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		LinkedHashSet<Integer> problemOrder = problem_order();	
-		System.out.println(problemOrder);
-		//Iterator to facilitate transfer to array
-		Iterator<Integer> itr = problemOrder.iterator();
-		//Array of problem set
-		problemNumArray = new Integer [problemOrder.size()] ;
-		//Counter for transfer of data into array
-		int i=0;	
-		// Placing problem set into array
-		while (itr.hasNext()) {
-			problemNumArray[i]=itr.next();
-			i++;
-		}
 
-	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Create linked list to store problems
 
 		try {
+
 			// Accessing the session information
 			HttpSession session = request.getSession();
+			//Initializing the lesson
+			if (session.getAttribute("problem").toString() == "Problem goes here") {
+				problemNumArray = problem_order();
+				k = 0;	
+			}
+			
 			// creating connection to the database
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(
@@ -71,21 +57,21 @@ public class lesson extends HttpServlet {
 					System.out.println(session.getAttribute("lesson_name"));
 				}
 			}
-			
-			
+
 			String lesson = session.getAttribute("lesson_name").toString();// Specific lesson to be tested on
-			String problem = locate_problem(Integer.toString(problemNumArray[k]), lesson);
-			System.out.println(k);
-			//System.out.println(problem);
 			
+			//Locating problem to display			
+			String problem = locate_problem(Integer.toString(problemNumArray[k]), lesson);
+			
+			System.out.println("Problem number"+k);
+
 			session.setAttribute("problem", problem);
 			k++;
-			
-			
+
 			if (!found) {
 				System.out.println("Lesson was not found");
 			}
-			
+
 			response.sendRedirect("lesson.jsp");
 		} catch (Exception e) {
 			System.out.println(e);
@@ -98,7 +84,8 @@ public class lesson extends HttpServlet {
 	// knowing the lesson and the problem number
 	// in an AWS database
 	// *****************************************
-	public LinkedHashSet<Integer> problem_order() {
+	// public LinkedHashSet<Integer> problem_order() {
+	public Integer[] problem_order() {
 		int num_problems = 0;
 
 		LinkedHashSet<Integer> prob_order = new LinkedHashSet<Integer>();
@@ -123,32 +110,55 @@ public class lesson extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return (create_array(prob_order));
 
-		return prob_order;
 	}
+	
+	// ***// This function will help us create a problem order array
+	// ***//
+
+	public Integer[] create_array(LinkedHashSet<Integer> problemOrder) {
+		try {
+		System.out.println("PRINTING PROBLEM ORDER"+problemOrder);
+		// Iterator to facilitate transfer to array
+		Iterator<Integer> itr = problemOrder.iterator();
+		// Array of problem set
+		Integer[] problemNumArray = new Integer[problemOrder.size()];
+		// Counter for transfer of data into array
+		int i = 0;
+		// Placing problem set into array
+		while (itr.hasNext()) {
+			problemNumArray[i] = itr.next();
+			i++;
+		}
+		return problemNumArray;
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return problemNumArray;
+	}
+
 	// Locates specific problem from database when the lesson and problem number is
-		// known
-		public String locate_problem(String probNum, String level) {
-			String problem = "";
-			
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection con = DriverManager.getConnection(
-						"jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
-				Statement stmt = con.createStatement();
+	// known
+	public String locate_problem(String probNum, String level) {
+		String problem = "";
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
+			Statement stmt = con.createStatement();
 
-				// Calculate the number of problems available in specific lesson
-				String sql = "SELECT " + "easy" + " FROM dbDevil.integers WHERE number=" + probNum;
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					problem = rs.getString("easy");
-				}
-			} catch (Exception e) {
-				System.out.println(e);
+			// Calculate the number of problems available in specific lesson
+			String sql = "SELECT " + "easy" + " FROM dbDevil.integers WHERE number=" + probNum;
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				problem = rs.getString("easy");
 			}
-
-			return problem;
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 
+		return problem;
+	}
 
 }
