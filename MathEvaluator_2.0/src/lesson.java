@@ -36,13 +36,13 @@ public class lesson extends HttpServlet {
 			// Accessing the session information
 			HttpSession session = request.getSession();
 			// Initializing the lesson
-			if (session.getAttribute("problem").toString() == "Problem goes here") {
+			if (session.getAttribute("problem").toString() == "") {
 				problemNumArray = problem_order();
 				k = 0;
 			}
 
-			String chapter = session.getAttribute("chapter").toString();// Specific lesson to be tested on
-			String difficulty = session.getAttribute("difficulty").toString();// Specific lesson to be tested on
+			String chapter = session.getAttribute("chapter").toString();// Specific chapter to be tested on
+			String difficulty = session.getAttribute("difficulty").toString();// Specific difficulty of chapter to be tested on
 			
 			// Locating problem to display
 			String problem = locate_problem(Integer.toString(problemNumArray[k]), chapter, difficulty);

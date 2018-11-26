@@ -42,7 +42,7 @@ public class create_student extends HttpServlet {
 			if (answer == 1) {
 				session.setAttribute("name", request.getParameter("name").toString());
 				session.setAttribute("level", "0");
-				session.setAttribute("problem", "Problem goes here");
+				session.setAttribute("problem", "");
 				response.sendRedirect("lesson.jsp");
 				System.out.println("The student was successfully added to the database system");
 			}

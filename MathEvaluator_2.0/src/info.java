@@ -38,13 +38,14 @@ public class info extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String sql = "select * from dbDevil.students where idstudents="+request.getParameter("ID").toString();
 			ResultSet rs = stmt.executeQuery(sql);
+			
 			while(rs.next()) 
 			{
 				if(Integer.toString(rs.getInt("idstudents")).equals(request.getParameter("ID").toString())) {
 					//HttpSession session = request.getSession();
 					session.setAttribute("name", rs.getString("name"));
 					session.setAttribute("level", rs.getString("level"));
-					session.setAttribute("problem", "Problem goes here");
+					session.setAttribute("problem", "");
 					//response.sendRedirect("lesson.jsp");
 					found = true;
 				}				
