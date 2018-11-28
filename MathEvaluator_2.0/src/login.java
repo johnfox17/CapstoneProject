@@ -43,7 +43,7 @@ public class login extends HttpServlet {
 			
 			
 			
-			if(id=="" || password=="" ||request.getParameter("category")!=null) {
+			if(id=="" || password=="" ||request.getParameter("category")==null) {
 				session.setAttribute("message", "Missing ID, password or category!");
 				response.sendRedirect("login.jsp");	
 			}
