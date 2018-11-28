@@ -106,7 +106,7 @@ public class lesson extends HttpServlet {
 
 	public int[] create_array(LinkedHashSet<Integer> problemOrder) {
 		try {
-			System.out.println("PRINTING PROBLEM ORDER" + problemOrder);
+			//System.out.println("PRINTING PROBLEM ORDER" + problemOrder);
 			// Iterator to facilitate transfer to array
 			Iterator<Integer> itr = problemOrder.iterator();
 			// Array of problem set

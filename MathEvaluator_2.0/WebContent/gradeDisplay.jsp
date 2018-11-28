@@ -13,13 +13,10 @@
 	String difficulty = (String) session.getAttribute("difficulty");
 %>
 <%
-	String problem = (String) session.getAttribute("problem");
+	int probNum = (int) session.getAttribute("probNum");
 %>
 <%
-	String solution1 = (String) session.getAttribute("solution1");
-%>
-<%
-	String message = (String) session.getAttribute("message");
+	int numCorrect = (int) session.getAttribute("numCorrect");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,10 +27,11 @@
 .container {
 	position: relative;
 }
-.locatiofsubmit{
+
+.locatiofsubmit {
 	position: absolute;
 	top: 500px;
-	right: 200px;
+	right: 1050px;
 }
 
 .topright {
@@ -43,18 +41,25 @@
 	font-size: 18px;
 }
 
-.problemdisplay {
+.instructions {
 	position: absolute;
-	top: 450px;
-	left: 500px;
-	font-size: 150px;
+	top: 400px;
+	left: 700px;
 }
 
-.solutiondisplay {
+.submitbutton {
 	position: absolute;
-	top: 200px;
-	left: 850px;
+	top: 120px;
+	height: 100px;
+	width: 200px;
+	left: 0px;
 	font-size: 46px;
+}
+
+.returndemo {
+	position: absolute;
+	top: 600px;
+	right: 850px;
 }
 
 .headerinf {
@@ -63,36 +68,22 @@
 	top: 35px;
 }
 
-.lessoninstrloc {
-	position: absolute;
-	top: 300px;
-	left: 150px;
-}
-
-
 .img {
 	width: 100%;
 	height: auto;
 	opacity: 0.3;
 }
 
-input[type=text] {
-	width: 100%;
-	padding: 20px 20px;
-	margin: 8px 0;
-	box-sizing: border-box;
-	font-size: 20px;
-}
 input[type=submit] {
-    width: 120%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 20px;
+	width: 120%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 20px;
 }
 
 HTML, body {
@@ -120,22 +111,17 @@ HTML, body {
 			</table>
 		</div>
 	</div>
-	<div>
-		<font class="problemdisplay"><%=problem%></font>
+	<div class="instructions">
+		<font size=14 color=red><b>You got <%=numCorrect%>/<%=probNum%></b></font>
 	</div>
-	<div class="lessoninstrloc">
-		<font color="red" size="12"><%=message%></font>
-	</div>
-	<div class="locatiofsubmit">
-		<div>
-			<form method="post" action="checkSolution">
-				<table>
-					<tr>
-						<td><input type="text" name="answer"></td>
-						<td><input type="submit" value="Submit"></td>
-					</tr>
-				</table>
-			</form>
+	<form method="get" action="returnHome">
+		<div class="locatiofsubmit">
+			<input type="submit" value="Submit">
 		</div>
-	</div>
+		<div class="returndemo">
+			<font size=14 color=purple>Click submit to end demo</font>
+		</div>
+	</form>
+
 </body>
+</html>

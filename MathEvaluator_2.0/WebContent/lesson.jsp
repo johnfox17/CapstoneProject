@@ -34,10 +34,10 @@
 
 .submitbutton {
 	position: absolute;
-	top: 120px;
+	top:500px;
 	height:100px;
 	width:200px;
-	left:0px;
+	right:800px;
 	font-size: 46px;
 }
 .problemdisplay {
@@ -45,6 +45,11 @@
 	top: 200px;
 	left:400px;
 	font-size: 150px;
+}
+.instructions{
+	position:absolute;
+	top:400px;
+	left:700px;
 }
 
 .headerinf {
@@ -82,6 +87,9 @@ HTML, body {
 				<tr>
 			</table>
 		</div>
+	</div>
+	<div class="instructions">
+		<font size=12 color="purple"><b>Click submit to continue!</b></font>
 	</div>
 	<div>
 		<font class="problemdisplay"><%=problem %></font>

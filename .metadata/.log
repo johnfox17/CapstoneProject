@@ -2158,3 +2158,6 @@ org.eclipse.core.runtime.CoreException: Cannot determine URI for '/MathEvaluator
 
 !ENTRY org.eclipse.jface.text 2 0 2018-11-27 04:48:55.891
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-11-27 20:49:10.548
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
