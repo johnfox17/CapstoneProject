@@ -53,7 +53,7 @@ public class lesson extends HttpServlet {
 			session.setAttribute("message", "Click to submit your answer.");
 			session.setAttribute("probNum", 1);
 			session.setAttribute("numCorrect", 0);
-			//k++;
+			
 
 //			if (!found) {
 //				System.out.println("Lesson was not found");

@@ -36,14 +36,18 @@ public class login extends HttpServlet {
 					"jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
 			Statement stmt = con.createStatement();
 			// Save parameters
-			String category = request.getParameter("category").toString();
+			
+			
 			String id = request.getParameter("ID");
 			String password = request.getParameter("password");
-			if(id=="" || password=="") {
-				session.setAttribute("message", "Missing ID or password!");
+			
+			
+			
+			if(id=="" || password=="" ||request.getParameter("category")!=null) {
+				session.setAttribute("message", "Missing ID, password or category!");
 				response.sendRedirect("login.jsp");	
 			}
-			
+			String category = request.getParameter("category").toString();
 			//The query begins
 			String sql = "SELECT * FROM dbDevil." + category + " WHERE id=" + request.getParameter("ID").toString();
 			ResultSet rs = stmt.executeQuery(sql);
