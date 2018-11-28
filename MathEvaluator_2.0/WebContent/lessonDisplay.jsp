@@ -15,6 +15,12 @@
 <%
 	String problem = (String) session.getAttribute("problem");
 %>
+<%
+	String solution1 = (String) session.getAttribute("solution1");
+%>
+<%
+	String message = (String) session.getAttribute("message");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +30,11 @@
 .container {
 	position: relative;
 }
+.locatiofsubmit{
+	position: absolute;
+	top: 500px;
+	right: 500px;
+}
 
 .topright {
 	position: absolute;
@@ -32,30 +43,56 @@
 	font-size: 18px;
 }
 
-.submitbutton {
-	position: absolute;
-	top: 120px;
-	height:100px;
-	width:200px;
-	left:0px;
-	font-size: 46px;
-}
 .problemdisplay {
 	position: absolute;
-	top: 200px;
-	left:400px;
+	top: 450px;
+	left: 500px;
 	font-size: 150px;
+}
+
+.solutiondisplay {
+	position: absolute;
+	top: 200px;
+	left: 850px;
+	font-size: 46px;
 }
 
 .headerinf {
 	position: absolute;
-	right:600px;
+	right: 600px;
 	top: 35px;
 }
+
+.lessoninstrloc {
+	position: absolute;
+	top: 300px;
+	left: 150px;
+}
+
+
 .img {
 	width: 100%;
 	height: auto;
 	opacity: 0.3;
+}
+
+input[type=text] {
+	width: 100%;
+	padding: 20px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+}
+input[type=submit] {
+    width: 120%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 HTML, body {
@@ -84,14 +121,21 @@ HTML, body {
 		</div>
 	</div>
 	<div>
-		<font class="problemdisplay"><%=problem %></font>
+		<font class="problemdisplay"><%=problem%></font>
 	</div>
-	<div class="container">
+	<div class="lessoninstrloc">
+		<font color="red" size="12"><%=message%></font>
+	</div>
+	<div class="locatiofsubmit">
 		<div>
-			<form method="get" action="lesson">
-				<input type="submit" value="Submit" class="submitbutton">
+			<form method="post" action="checkSolution">
+				<table>
+					<tr>
+						<td><input type="text" name="answer"></td>
+						<td><input type="submit" value="Submit"></td>
+					</tr>
+				</table>
 			</form>
 		</div>
 	</div>
 </body>
-</html>

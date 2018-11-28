@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
 		"/lesson" })
 public class lesson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	int k;
-	Integer[] problemNumArray;
+	//int k;
+	int[] problemNumArray;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -32,31 +32,34 @@ public class lesson extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-
+			problemNumArray=problem_order();
 			// Accessing the session information
 			HttpSession session = request.getSession();
-			// Initializing the lesson
-			if (session.getAttribute("problem").toString() == "") {
-				problemNumArray = problem_order();
-				k = 0;
-			}
-
 			String chapter = session.getAttribute("chapter").toString();// Specific chapter to be tested on
-			String difficulty = session.getAttribute("difficulty").toString();// Specific difficulty of chapter to be tested on
-			
+			String difficulty = session.getAttribute("difficulty").toString();// Specific difficulty of chapter to be
+																				// tested on
+
 			// Locating problem to display
-			String problem = locate_problem(Integer.toString(problemNumArray[k]), chapter, difficulty);
+			String problem = locate_problem(Integer.toString(problemNumArray[0]), chapter, difficulty);
+			// Locate solution with same function just by adding "_solution" we an access
+			// the solution in the database
+			String diff_sol = difficulty + "_solution";
+			// session.setAttribute("old_solution",session.getAttribute("solution").toString());
+			String solution = locate_problem(Integer.toString(problemNumArray[0]), chapter, diff_sol);
 
-			System.out.println("Problem number" + k);
-
+			session.setAttribute("problemOrder", problemNumArray);
 			session.setAttribute("problem", problem);
-			k++;
+			session.setAttribute("solution", solution);
+			session.setAttribute("message", "Click to submit your answer.");
+			session.setAttribute("probNum", 1);
+			session.setAttribute("numCorrect", 0);
+			//k++;
 
 //			if (!found) {
 //				System.out.println("Lesson was not found");
 //			}
 
-			response.sendRedirect("lesson.jsp");
+			response.sendRedirect("lessonDisplay.jsp");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -69,7 +72,7 @@ public class lesson extends HttpServlet {
 	// in an AWS database
 	// *****************************************
 	// public LinkedHashSet<Integer> problem_order() {
-	public Integer[] problem_order() {
+	public int[] problem_order() {
 		int num_problems = 0;
 
 		LinkedHashSet<Integer> prob_order = new LinkedHashSet<Integer>();
@@ -101,13 +104,13 @@ public class lesson extends HttpServlet {
 	// ***// This function will help us create a problem order array
 	// ***//
 
-	public Integer[] create_array(LinkedHashSet<Integer> problemOrder) {
+	public int[] create_array(LinkedHashSet<Integer> problemOrder) {
 		try {
 			System.out.println("PRINTING PROBLEM ORDER" + problemOrder);
 			// Iterator to facilitate transfer to array
 			Iterator<Integer> itr = problemOrder.iterator();
 			// Array of problem set
-			Integer[] problemNumArray = new Integer[problemOrder.size()];
+			int[] problemNumArray = new int[problemOrder.size()];
 			// Counter for transfer of data into array
 			int i = 0;
 			// Placing problem set into array
@@ -133,7 +136,7 @@ public class lesson extends HttpServlet {
 			Statement stmt = con.createStatement();
 
 			// Calculate the number of problems available in specific lesson
-			String sql = "SELECT " + difficulty + " FROM dbDevil"+"." + chapter +" WHERE number=" + probNum;
+			String sql = "SELECT " + difficulty + " FROM dbDevil" + "." + chapter + " WHERE number=" + probNum;
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				problem = rs.getString(difficulty);

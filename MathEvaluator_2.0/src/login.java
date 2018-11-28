@@ -75,7 +75,7 @@ public class login extends HttpServlet {
 			}
 			
 			
-			System.out.println(session.getAttribute("difficulty"));
+			//System.out.println(session.getAttribute("difficulty"));
 			//Redirect to student page or admin page
 			if(found==true && category.equals("admin")) { response.sendRedirect("admin.jsp");}
 			if(found==true && category.equals("students")) {response.sendRedirect("student.jsp");}
