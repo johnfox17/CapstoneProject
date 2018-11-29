@@ -41,15 +41,16 @@ public class login extends HttpServlet {
 			String id = request.getParameter("ID");
 			String password = request.getParameter("password");
 			
-			
-			
 			if(id=="" || password=="" ||request.getParameter("category")==null) {
 				session.setAttribute("message", "Missing ID, password or category!");
 				response.sendRedirect("login.jsp");	
 			}
+			
 			String category = request.getParameter("category").toString();
+			
 			//The query begins
 			String sql = "SELECT * FROM dbDevil." + category + " WHERE id=" + request.getParameter("ID").toString();
+			
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {				
 				if (Integer.toString(rs.getInt("id")).equals(id)
@@ -63,7 +64,11 @@ public class login extends HttpServlet {
 					found = true;
 				}
 			}
-			//query the database to obtain Chapter and Difficulty
+			
+			//Redirect to the admin page
+			if(found==true && category.equals("admin")) { session.setAttribute("message", ""); response.sendRedirect("admin.jsp");}
+			
+			//create sql query string to look for additional information for students
 			sql = "select * from dbDevil.levels where level=" + session.getAttribute("level").toString();
 			rs = stmt.executeQuery(sql);
 			
@@ -80,9 +85,8 @@ public class login extends HttpServlet {
 			
 			
 			//System.out.println(session.getAttribute("difficulty"));
-			//Redirect to student page or admin page
-			if(found==true && category.equals("admin")) { response.sendRedirect("admin.jsp");}
-			if(found==true && category.equals("students")) {response.sendRedirect("student.jsp");}
+			//Redirect to student page
+			if(found==true && category.equals("students")) {session.setAttribute("message", ""); response.sendRedirect("student.jsp");}
 			
 			//Redirect to login if not found
 			if(!found) {

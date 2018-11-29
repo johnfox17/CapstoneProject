@@ -55,36 +55,19 @@ HTML, body {
 	<div>
 		<p align="justify">
 			<font size=+1>Hello <b><%=first_name%> <%=last_name%></b>,
-				it's nice to see you're here. For now, you can do two things in our
-				system:
-			</font>
+				it's nice to see you're here. This is a trial to our system that
+				allows students to take virtual tests. For now, we have available a
+				test for one lesson, <b>integers</b> </font>
 		</p>
 		<br />
 		<ul>
-			<li><font size=+1>Take <b>automated </b><a
-					href="lesson.jsp">tests</a>.
+			<li><font size=+1><b>Integers </b><a
+					href="lesson.jsp">test</a>.
 			</font></li>
 		</ul>
 
-		<ul>
-			<li><font size=+1>Check your <a href="lesson.jsp">grades</a>.
-			</font></li>
-		</ul>
 	</div>
 	<br />
-	<div>
-		<p align="justify">
-			<font size=+1>The automated test taking portion of this
-				software, will allow you to increase level of difficulty, when you
-				have reached 10 correct answer in a row. If you are unable to do so,
-				you will finish the test and if you obtain an average of 75 or
-				above, you will move to the next lesson.</font>
-		</p>
-	</div>
-	<div>
-		<p align="justify">
-			<font size=+1>You report card will illustrate your grades, and the streaks for each section. </font>
-		</p>
-	</div>
+	
 </body>
 </html>

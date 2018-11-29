@@ -26,8 +26,9 @@ public class checkSolution extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-		// Variable to store submited answer
-		String answer = request.getParameter("answer"); //
+		// Variable to store submitted answer
+		String answer = request.getParameter("answer");
+		
 		// Variable to store solution
 		String solution = session.getAttribute("solution").toString();
 		// variable to store problem order
