@@ -31,7 +31,7 @@ public class create_student extends HttpServlet {
 			HttpSession session = request.getSession();
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
+					"jdbc:mysql://mydbinstance.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
 			Statement stmt = con.createStatement();
 
 			// returning if any field is empty
@@ -50,7 +50,7 @@ public class create_student extends HttpServlet {
 				num_accounts = rs.getInt("COUNT(*)");
 			}
 
-			System.out.println(num_accounts);
+			
 			if (num_accounts == 1) {
 				session.setAttribute("message", "The ID number is already used!");
 				response.sendRedirect("sign_up_page.jsp");
@@ -68,7 +68,6 @@ public class create_student extends HttpServlet {
 					+ request.getParameter("password").toString() + "\'" + ")";
 
 			int answer = stmt.executeUpdate(sql);
-			System.out.print(answer);
 			if (answer == 1) {
 				session.setAttribute("message", "Student was successfully added to the database");
 				response.sendRedirect("sign_up_page.jsp");

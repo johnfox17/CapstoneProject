@@ -29,7 +29,7 @@ public class eliminate_student extends HttpServlet {
 			HttpSession session = request.getSession();
 			//Connection to the USA database
 			//Connection con = DriverManager.getConnection("jdbc:mysql://mydb.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
-			Connection con = DriverManager.getConnection("jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
+			Connection con = DriverManager.getConnection("jdbc:mysql://mydbinstance.chkafory7bnl.us-east-1.rds.amazonaws.com","capstone","123456?!");
 			Statement stmt = con.createStatement();
 			if(request.getParameter("ID")==null) {
 				session.setAttribute("message", "You must input an ID!");

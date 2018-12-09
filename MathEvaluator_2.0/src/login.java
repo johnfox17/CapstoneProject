@@ -33,7 +33,7 @@ public class login extends HttpServlet {
 			boolean found = false;
 			HttpSession session = request.getSession();
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://mydbcapstone.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
+					"jdbc:mysql://mydbinstance.chkafory7bnl.us-east-1.rds.amazonaws.com", "capstone", "123456?!");
 			Statement stmt = con.createStatement();
 			// Save parameters
 			
